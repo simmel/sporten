@@ -1,3 +1,5 @@
+// vim: set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+
 if (!("console" in window)) {
 	window.console = {
 		'log': function () {}
