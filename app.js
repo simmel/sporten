@@ -1,3 +1,9 @@
+if (!("console" in window)) {
+	window.console = {
+		'log': function () {}
+	};
+}
+
 jQuery(function ($) {
 
 function fetch(/* object */ request, /* function */ respond)
