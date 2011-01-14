@@ -26,11 +26,12 @@ function fetch(/* object */ request, /* function */ respond)
 	);
 }
 
-$('#searcher').autocomplete({
-	source: fetch,
-	minLength: 2
-});
-
+  $('.searcher').live('focus', function() {
+    $(this).autocomplete({
+      source: fetch,
+      minLength: 2
+    });
+  });
 
 // test!
 /*
