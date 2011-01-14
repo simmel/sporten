@@ -33,6 +33,22 @@ function fetch(/* object */ request, /* function */ respond)
     });
   });
 
+  shift_is_held = false;
+  $('.searcher').live('keydown',function(e) { 
+    if (e.which == $.ui.keyCode.SHIFT) {
+      shift_is_held = true;
+    }
+    if (shift_is_held && e.which == $.ui.keyCode.ENTER) {
+      $('input').first().clone().val("").appendTo('form').focus();
+    }
+  });
+
+  $('.searcher').live('keyup',function(e){ 
+    if (e.which == $.ui.keyCode.SHIFT) {
+      shift_is_held = false;
+    }
+  });
+
 // test!
 /*
 $.get('http://ws.spotify.com/search/1/artist?q=Eld', function (response) {
