@@ -26,6 +26,25 @@ function fetch(/* object */ request, /* function */ respond)
 	);
 }
 
+  function fetch_tracks(artist) {
+    console.log("Fetching tracks for " + artist);
+    $.get(
+      'http://ws.spotify.com/search/1/track',
+      { q: 'artist:"' + artist + '"' },
+      function (xml) {
+        var a = $('textarea')
+        $('track', xml).each(function(i) {
+          if (i > 5) {
+            return;
+          }
+          var track = $(this).attr('href')
+          console.log("Adding track " + track);
+          a.val(a.val() + track + "\n");
+        });
+      }
+    );
+  }
+
   $('.searcher').live('focus', function() {
     $(this).autocomplete({
       source: fetch,
@@ -57,6 +76,15 @@ function fetch(/* object */ request, /* function */ respond)
     if (e.which == $.ui.keyCode.SHIFT) {
       shift_is_held = false;
     }
+  });
+
+  $('form').submit(function() {
+      $('form input').each(function() {
+        var artist = $(this).val();
+        console.log("Found artist: " + artist);
+        fetch_tracks(artist);
+      });
+    return false;
   });
 
 // test!

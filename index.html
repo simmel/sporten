@@ -5,19 +5,26 @@
 <title>Sporten</title>
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
 <style>
-  input {
+  input,button {
     display: block;
   }
 </style>
 </head>
 <body>
 
-<form method="get" class="ui.widget" onsubmit="return false;">
+<form method="get" class="ui.widget">
 
 <input type="search" name="q[]" class="searcher">
 
 </form>
+<!-- TODO: Remove the need for this button -->
+<button onclick="$('form').submit();">
+  Fetch tracks!
+</button>
 
+<!-- TODO: Autoresize -->
+<textarea rows="10" cols="40">
+</textarea>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/jquery-ui.min.js"></script>
 <script type="text/javascript" src="app.js"></script>
