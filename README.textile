@@ -1,3 +1,3 @@
 h1. TODO
-* When typing artists and you type a comma, generate a new <input> and start typing there. Also make sure it works with pasting.
+* When typing artists and you type a comma, generate a new &lt;input&gt; and start typing there. Also make sure it works with pasting.
 * Steal drag-and-drop creation of playlist from spotibot.com
