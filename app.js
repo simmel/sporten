@@ -1,30 +1,29 @@
 // vim: shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 
 if (!("console" in window)) {
-	window.console = {
-		'log': function () {}
-	};
+  window.console = {
+    'log': function () {}
+  };
 }
 
 jQuery(function ($) {
 
-function fetch(/* object */ request, /* function */ respond)
-{
-	console.log( request.term );
+  function fetch(/* object */ request, /* function */ respond) {
+    console.log( request.term );
 
-	$.get(
-		'http://ws.spotify.com/search/1/artist',
-		{ q: request.term },
-		function (xml) {
-			var data = [];
-			$('artist name', xml).each(function () {
-				data.push( $(this).text() )
-			});
+    $.get(
+      'http://ws.spotify.com/search/1/artist',
+      { q: request.term },
+      function (xml) {
+        var data = [];
+        $('artist name', xml).each(function () {
+          data.push( $(this).text() )
+        });
 
-			respond( data );
-		}
-	);
-}
+        respond( data );
+      }
+    );
+  }
 
   function fetch_tracks(artist) {
     console.log("Fetching tracks for " + artist);
@@ -96,14 +95,6 @@ function fetch(/* object */ request, /* function */ respond)
       });
     return false;
   });
-
-// test!
-/*
-$.get('http://ws.spotify.com/search/1/artist?q=Eld', function (response) {
-	$('artist', response).each(function () {
-		console.log( $('name', this).text(), $(this).attr('href') );
-	})
-});*/
 
 });
 
