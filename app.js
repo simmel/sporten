@@ -45,6 +45,10 @@ jQuery(function ($) {
             console.log("Adding track " + track);
             a.val(a.val() + track + "\n");
             tracks_added++;
+            // Resize textarea
+            a.attr('rows', function (i, oldval) {
+              return tracks_added > oldval ? tracks_added : oldval;
+            });
           }
           else {
             console.log("Not adding " + track + " since it's not available in user territory (" + user_country + ").");
