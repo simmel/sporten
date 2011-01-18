@@ -62,7 +62,8 @@ jQuery(function ($) {
   });
 
   $('.searcher').live('keydown',function(e) { 
-    if (e.shiftKey && e.which == $.ui.keyCode.ENTER) {
+    // Only create new input if old input is empty
+    if (e.shiftKey && e.which == $.ui.keyCode.ENTER && $(this).val() != '') {
       $('input').first().clone().val("").appendTo('form').focus();
     }
     /* Remove <input> when backspacing if:
@@ -84,8 +85,10 @@ jQuery(function ($) {
       }
       $('form input').each(function() {
         var artist = $(this).val();
-        console.log("Found artist: " + artist);
-        fetch_tracks(artist, cnt);
+        if (artist) {
+          console.log("Found artist: " + artist);
+          fetch_tracks(artist, cnt);
+        }
       });
     return false;
   });
