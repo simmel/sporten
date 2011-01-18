@@ -90,5 +90,7 @@ jQuery(function ($) {
     return false;
   });
 
+
+  $('.searcher').first().focus();
 });
 
