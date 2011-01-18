@@ -61,12 +61,8 @@ jQuery(function ($) {
     });
   });
 
-  shift_is_held = false;
   $('.searcher').live('keydown',function(e) { 
-    if (e.which == $.ui.keyCode.SHIFT) {
-      shift_is_held = true;
-    }
-    if (shift_is_held && e.which == $.ui.keyCode.ENTER) {
+    if (e.shiftKey && e.which == $.ui.keyCode.ENTER) {
       $('input').first().clone().val("").appendTo('form').focus();
     }
     /* Remove <input> when backspacing if:
@@ -78,12 +74,6 @@ jQuery(function ($) {
       e.preventDefault();
       $(this).remove();
       $('input').last().focus();
-    }
-  });
-
-  $('.searcher').live('keyup',function(e){ 
-    if (e.which == $.ui.keyCode.SHIFT) {
-      shift_is_held = false;
     }
   });
 
