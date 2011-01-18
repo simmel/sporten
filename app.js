@@ -25,7 +25,7 @@ jQuery(function ($) {
     );
   }
 
-  function fetch_tracks(artist, cnt) {
+  function fetch_tracks(artist, number_of_tracks) {
     console.log("Fetching tracks for " + artist);
     $.get(
       'http://ws.spotify.com/search/1/track',
@@ -35,7 +35,7 @@ jQuery(function ($) {
         var user_country = geoip_country_code();
         var tracks_added = 0;
         $('track', xml).each(function(i) {
-          if (tracks_added >= cnt) {
+          if (tracks_added >= number_of_tracks) {
             return;
           }
           var track = $(this).attr('href')
@@ -47,7 +47,9 @@ jQuery(function ($) {
             tracks_added++;
             // Resize textarea
             a.attr('rows', function (i, oldval) {
-              return tracks_added > oldval ? tracks_added : oldval;
+              if (tracks_added < 50) {
+                return tracks_added > oldval ? tracks_added : oldval;
+              }
             });
           }
           else {
@@ -83,15 +85,15 @@ jQuery(function ($) {
   });
 
   $('form').submit(function() {
-      var cnt = parseInt($('#cnt').val(), 10);
-      if (isNaN(cnt)) {
-        cnt = 5;
+      var number_of_tracks = parseInt($('#number_of_tracks').val(), 10);
+      if (isNaN(number_of_tracks)) {
+        number_of_tracks = 5;
       }
       $('form input').each(function() {
         var artist = $(this).val();
         if (artist) {
           console.log("Found artist: " + artist);
-          fetch_tracks(artist, cnt);
+          fetch_tracks(artist, number_of_tracks);
         }
       });
     return false;
