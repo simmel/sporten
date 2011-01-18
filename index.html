@@ -6,8 +6,11 @@
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
 <script src="http://j.maxmind.com/app/geoip.js" type="text/javascript"></script>
 <style>
-  input,button {
+  input,button,select {
     display: block;
+  }
+  button {
+    float: left;
   }
 </style>
 </head>
@@ -22,6 +25,11 @@
 <button onclick="$('form').submit();">
   Fetch tracks!
 </button>
+<select id="cnt">
+  <option value="5">top 5</option>
+  <option value="10">top 10</option>
+  <option value="20">top 20</option>
+</select>
 
 <!-- TODO: Autoresize -->
 <textarea rows="10" cols="40">

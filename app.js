@@ -25,7 +25,7 @@ jQuery(function ($) {
     );
   }
 
-  function fetch_tracks(artist) {
+  function fetch_tracks(artist, cnt) {
     console.log("Fetching tracks for " + artist);
     $.get(
       'http://ws.spotify.com/search/1/track',
@@ -35,7 +35,7 @@ jQuery(function ($) {
         var user_country = geoip_country_code();
         var tracks_added = 0;
         $('track', xml).each(function(i) {
-          if (tracks_added >= 5) {
+          if (tracks_added >= cnt) {
             return;
           }
           var track = $(this).attr('href')
@@ -78,10 +78,14 @@ jQuery(function ($) {
   });
 
   $('form').submit(function() {
+      var cnt = parseInt($('#cnt').val(), 10);
+      if (isNaN(cnt)) {
+        cnt = 5;
+      }
       $('form input').each(function() {
         var artist = $(this).val();
         console.log("Found artist: " + artist);
-        fetch_tracks(artist);
+        fetch_tracks(artist, cnt);
       });
     return false;
   });
