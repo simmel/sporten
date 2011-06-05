@@ -25,13 +25,29 @@ jQuery(function ($) {
     );
   }
 
-  function fetch_tracks(artist, number_of_tracks) {
+  function add_to_textarea(tracks) {
+    var a = $('textarea');
+
+    jQuery.each(tracks, function(k,track) {
+      a.val(a.val() + track + "\n");
+    });
+
+    // Resize textarea
+    a.attr('rows', function (i, oldval) {
+      if (tracks.length < 50) {
+        return tracks.length > oldval ? tracks.length : oldval;
+      }
+    });
+  }
+
+  function fetch_tracks(artist, number_of_tracks, when_completed) {
     console.log("Fetching tracks for " + artist);
+
     $.get(
       'http://ws.spotify.com/search/1/track',
       { q: 'artist:"' + artist + '"' },
       function (xml) {
-        var a = $('textarea')
+        var tracks = []
         var user_country = geoip_country_code();
         var tracks_added = 0;
         $('track', xml).each(function(i) {
@@ -43,19 +59,14 @@ jQuery(function ($) {
           // Only add track if it's available "worldwide" or in the users country
           if ($(this).find('territories').first().text() == "worldwide" || track_territory.length) {
             console.log("Adding track " + track);
-            a.val(a.val() + track + "\n");
+            tracks.push(track);
             tracks_added++;
-            // Resize textarea
-            a.attr('rows', function (i, oldval) {
-              if (tracks_added < 50) {
-                return tracks_added > oldval ? tracks_added : oldval;
-              }
-            });
           }
           else {
             console.log("Not adding " + track + " since it's not available in user territory (" + user_country + ").");
           }
         });
+        when_completed(tracks);
       }
     );
   }
@@ -93,7 +104,7 @@ jQuery(function ($) {
         var artist = $(this).val();
         if (artist) {
           console.log("Found artist: " + artist);
-          fetch_tracks(artist, number_of_tracks);
+          fetch_tracks(artist, number_of_tracks, add_to_textarea);
         }
       });
     return false;
