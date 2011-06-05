@@ -97,6 +97,8 @@ jQuery(function ($) {
   });
 
   $('form').submit(function() {
+    $('textarea').val("");
+
       var number_of_tracks = parseInt($('#number_of_tracks').val(), 10);
       if (isNaN(number_of_tracks)) {
         number_of_tracks = 5;
