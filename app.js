@@ -82,17 +82,20 @@ jQuery(function ($) {
   $('.searcher').live('keydown',function(e) { 
     // Only create new input if old input is empty
     if (e.shiftKey && e.which == $.ui.keyCode.ENTER && $(this).val() != '') {
-      $('input').first().clone().val("").appendTo('form').focus();
+      $('input[type=search]').first().clone().val("").insertAfter($(this)).focus();
+      $(this).autocomplete("close");
+      // Needed or else we will submit
+      return false;
     }
     /* Remove <input> when backspacing if:
        * The <input> is empty
        * It's not the last <input>
       and then focus the last <input>.
     */
-    if (e.which == $.ui.keyCode.BACKSPACE && $(this).val() == "" && $('input').length > 1) {
+    if (e.which == $.ui.keyCode.BACKSPACE && $(this).val() == "" && $('input[type=search]').length > 1) {
       e.preventDefault();
       $(this).remove();
-      $('input').last().focus();
+      $('input[type=search]').last().focus();
     }
   });
 
@@ -106,7 +109,7 @@ jQuery(function ($) {
       if (isNaN(number_of_tracks)) {
         number_of_tracks = 5;
       }
-      $('form input').each(function() {
+      $('form input[type=search]').each(function() {
         var artist = $(this).val();
         if (artist) {
           console.log("Found artist: " + artist);
