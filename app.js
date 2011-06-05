@@ -31,9 +31,12 @@ jQuery(function ($) {
     a.val(jQuery.trim(a.val() + "\n" + tracks.join('\n')));
 
     // Resize textarea
+    // FIXME Ugh, horrid hack
+    textarea_rows = a.val().split('\n').length;
+    // TODO Make the expansion smoother and limit it
     a.attr('rows', function (i, oldval) {
-      if (tracks.length < 50) {
-        return tracks.length > oldval ? tracks.length : oldval;
+      if (textarea_rows < 50) {
+        return textarea_rows > oldval ? textarea_rows : oldval;
       }
     });
   }
