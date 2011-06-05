@@ -28,9 +28,7 @@ jQuery(function ($) {
   function add_to_textarea(tracks) {
     var a = $('textarea');
 
-    jQuery.each(tracks, function(k,track) {
-      a.val(a.val() + track + "\n");
-    });
+    a.val(tracks.join('\n'));
 
     // Resize textarea
     a.attr('rows', function (i, oldval) {
