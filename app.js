@@ -105,20 +105,19 @@ jQuery(function ($) {
     if (document.activeElement) {
       $(document.activeElement).autocomplete("close");
     }
-      var number_of_tracks = parseInt($('#number_of_tracks').val(), 10);
-      if (isNaN(number_of_tracks)) {
-        number_of_tracks = 5;
+    var number_of_tracks = parseInt($('#number_of_tracks').val(), 10);
+    if (isNaN(number_of_tracks)) {
+      number_of_tracks = 5;
+    }
+    $('form input[type=search]').each(function() {
+      var artist = $(this).val();
+      if (artist) {
+        console.log("Found artist: " + artist);
+        fetch_tracks(artist, number_of_tracks, add_to_textarea);
       }
-      $('form input[type=search]').each(function() {
-        var artist = $(this).val();
-        if (artist) {
-          console.log("Found artist: " + artist);
-          fetch_tracks(artist, number_of_tracks, add_to_textarea);
-        }
-      });
+    });
     return false;
   });
-
 
   $('.searcher').first().focus();
 });
