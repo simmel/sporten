@@ -160,7 +160,7 @@ jQuery(function ($) {
   // Set submit action when radio button is pressed
   $('input[name=search_type]').click(set_submit_action);
   // Set submit action when site is loaded
-  $('input[name=search_type]').each(set_submit_action);
+  $('input[name=search_type]:checked').each(set_submit_action);
 
   $('.searcher').live('paste',function() {
     var e = $(this);
