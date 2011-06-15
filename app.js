@@ -31,8 +31,10 @@ jQuery(function ($) {
 
   function add_to_textarea(tracks) {
     var a = $('textarea');
+    var value = jQuery.trim(a.val() + "\n" + tracks.join('\n'));
 
-    a.val(jQuery.trim(a.val() + "\n" + tracks.join('\n')));
+    a.val(value);
+    $('#tracks_shadow').text(value);
 
     // Resize textarea
     // FIXME Ugh, horrid hack
