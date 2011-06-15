@@ -1,4 +1,2 @@
 h1. TODO
-* When typing artists and you type a comma, generate a new &lt;input&gt; and start typing there. Also make sure it works with pasting.
 * Steal drag-and-drop creation of playlist from spotibot.com
-* Create a new view, or whatever, where you can paste a Last.fm event, such as http://www.last.fm/festival/1834310+Dans+Dakar, and get tracks from all or top artists on that event. http://www.last.fm/api/show?service=292
