@@ -220,6 +220,16 @@ jQuery(function ($) {
     }
   });
 
+  $("#slider").slider({
+    value: 5,
+    min: 1,
+    max: 100,
+    slide: function(event, ui) {
+      $("#number_of_tracks").val(ui.value);
+    }
+  });
+  $("#number_of_tracks").val($("#slider").slider("value"));
+
   $('.searcher').first().focus();
 });
 

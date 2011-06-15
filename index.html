@@ -12,7 +12,7 @@
   input[type=search], textarea {
     width: 250pt;
   }
-  div {
+  div.column {
     float: left;
     margin: 5pt;
   }
@@ -23,6 +23,10 @@
   .sport {
     color: #6CC200;
   }
+  #slider {
+    font-size: 50%;
+  }
+
 </style>
 </head>
 <body>
@@ -33,16 +37,13 @@
 
 <input type="search" name="q[]" class="searcher" value="">
 
-<div>
+<div class="column">
 <h4>Number of tracks</h3>
-<select id="number_of_tracks">
-  <option value="5">top 5</option>
-  <option value="10">top 10</option>
-  <option value="20">top 20</option>
-</select>
+<input type="text" id="number_of_tracks" size="2pt" />
+<div id="slider"></div>
 </div>
 
-<div>
+<div class="column">
 <h4>Search for tracks of&hellip;</h3>
 <input type="radio" name="search_type" value="artist" id="artist" checked/><label for="artist">artists</label>
 <input type="radio" name="search_type" value="event"  id="event"/><label for="event">an event</label>
