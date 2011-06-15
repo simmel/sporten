@@ -32,11 +32,11 @@ jQuery(function ($) {
 
     // Resize textarea
     // FIXME Ugh, horrid hack
-    textarea_rows = a.val().split('\n').length;
+    var textarea_rows = a.val().split('\n').length;
     // TODO Make the expansion smoother and limit it
     a.attr('rows', function (i, oldval) {
       if (textarea_rows < 50) {
-        return textarea_rows > oldval ? textarea_rows : oldval;
+        return textarea_rows > oldval || oldval + 10 > textarea_rows ? textarea_rows : oldval;
       }
     });
   }
