@@ -1,2 +1,6 @@
 h1. TODO
 * Steal drag-and-drop creation of playlist from spotibot.com
+* Add usage information
+** Make it stylish and nice usability wise
+* Add (+)-button next to the last <input> to add a new <input> on e.g. mobile
+* Add auto width on <input> and <textarea> to support mobile (either in a mobile css or the default)
