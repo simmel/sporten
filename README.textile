@@ -4,3 +4,5 @@ h1. TODO
 ** Make it stylish and nice usability wise
 * Add (+)-button next to the last <input> to add a new <input> on e.g. mobile
 * Add auto width on <input> and <textarea> to support mobile (either in a mobile css or the default)
+* Enter with one empty input shouldn't search
+* When clicking on textarea, select everything.
