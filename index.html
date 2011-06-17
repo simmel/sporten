@@ -5,7 +5,7 @@
 <title>Sporten</title>
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
 <script src="http://j.maxmind.com/app/geoip.js" type="text/javascript"></script>
-<style>
+<style type="text/css">
   input[type=search],button {
     display: block;
   }
@@ -40,13 +40,13 @@
 <input type="search" name="q[]" class="searcher" value="">
 
 <div class="column">
-<h4>Number of tracks</h3>
-<input type="text" id="number_of_tracks" size="2pt" />
+<h4>Number of tracks</h4>
+<input type="text" id="number_of_tracks" size="2" />
 <div id="slider"></div>
 </div>
 
 <div class="column">
-<h4>Search for tracks of&hellip;</h3>
+<h4>Search for tracks of&hellip;</h4>
 <input type="radio" name="search_type" value="artist" id="artist" checked/><label for="artist">artists</label>
 <input type="radio" name="search_type" value="event"  id="event"/><label for="event">events</label>
 </div>
@@ -58,7 +58,7 @@
 <textarea rows="10" cols="40">
 </textarea>
 <span id="tracks_shadow"></span>
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="14" height="14" class="clippy" id="clippy">
+<object type="application/x-shockwave-flash" width="14" height="14">
 <param name="movie" value="clippy-v5.swf">
 <param name="allowScriptAccess" value="always">
 <param name="quality" value="high">
@@ -66,7 +66,7 @@
 <param name="FlashVars" value="id=tracks_shadow&amp;copied=&amp;copyto=">
 <param name="bgcolor" value="#FFFFFF">
 <param name="wmode" value="opaque">
-<embed src="clippy-v5.swf" width="14" height="14" name="clippy" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=tracks_shadow&amp;copied=&amp;copyto=" bgcolor="#FFFFFF" wmode="opaque">
+<embed src="clippy-v5.swf" width="14" height="14" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=tracks_shadow&amp;copied=&amp;copyto=" bgcolor="#FFFFFF" wmode="opaque">
 </object>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
