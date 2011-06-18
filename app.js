@@ -222,6 +222,14 @@ jQuery(function ($) {
     }
   });
 
+  // Disable/enable when blur/focus of input
+  $('.searcher').live('blur', function(e) {
+      $(this).autocomplete('disable');
+  });
+
+  $('.searcher').live('focus', function(e) {
+      $(this).autocomplete('enable');
+  });
   $("#slider").slider({
     value: 5,
     min: 1,
