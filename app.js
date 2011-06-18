@@ -17,7 +17,7 @@ jQuery(function ($) {
 
     $.get(
       'http://ws.spotify.com/search/1/artist',
-      { q: request.term },
+      { q: request.term + '*' },
       function (xml) {
         var data = [];
         $('artist name', xml).each(function () {
