@@ -230,6 +230,18 @@ jQuery(function ($) {
   $('.searcher').live('focus', function(e) {
       $(this).autocomplete('enable');
   });
+
+  // http://stackoverflow.com/questions/5797539/jquery-select-all-text-from-a-textarea
+  $('textarea').focus(function() {
+    $(this).select();
+        // Work around Chrome's little problem
+    $(this).mouseup(function() {
+        // Prevent further mouseup intervention
+        $(this).unbind("mouseup");
+        return false;
+    });
+  });
+
   $("#slider").slider({
     value: 5,
     min: 1,
