@@ -1,4 +1,6 @@
 h1. TODO
+* Fix Firefox support
+* Check other browsers so that they work
 * Steal drag-and-drop creation of playlist from spotibot.com
 * Add usage information
 ** Make it stylish and nice usability wise
