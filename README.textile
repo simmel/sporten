@@ -1,6 +1,5 @@
 h1. TODO
 * Fix exact artist matching (searching for shed returns shed seven which is the most popular artist with shed in it) in jQuery since Spotify doesn't support it.
-* Fix Firefox support
 * Check other browsers so that they work
 * Steal drag-and-drop creation of playlist from spotibot.com
 * Add usage information
