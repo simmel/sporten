@@ -13,7 +13,7 @@ jQuery(function ($) {
       return;
     }
 
-    console.log( request.term );
+    console.log("Auto-completing: " + request.term );
 
     $.get(
       'http://ws.spotify.com/search/1/artist',
