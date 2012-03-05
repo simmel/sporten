@@ -57,7 +57,7 @@ jQuery(function ($) {
         var tracks = []
         var user_country = geoip_country_code();
         var tracks_added = 0;
-        $('track', xml).each(function(i) {
+        $('track', xml).each(function() {
           if (tracks_added >= number_of_tracks) {
             return;
           }
