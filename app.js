@@ -61,16 +61,20 @@ jQuery(function ($) {
           if (tracks_added >= number_of_tracks) {
             return;
           }
-          var track = $(this).attr('href')
+          var track_id = $(this).attr('href')
           track_territory = $(this).find('territories:contains(' + user_country + ')').first();
           // Only add track if it's available "worldwide" or in the users country
           if ($(this).find('territories').first().text() == "worldwide" || track_territory.length) {
-            console.log("Adding track " + track);
-            tracks.push(track);
+            var track_name = $('> name', this).text();
+            var artist_name = $('artist name', this).text();
+            var album_name = $('album name', this).text();
+            var track_info = artist_name + "-" + track_name + " (" + album_name + ") " + track_id;
+            console.log("Adding " + track_info);
+            tracks.push(track_id);
             tracks_added++;
           }
           else {
-            console.log("Not adding " + track + " since it's not available in user territory (" + user_country + ").");
+            console.log("Not adding " + track_info + " since it's not available in user territory (" + user_country + ").");
           }
         });
         when_completed(tracks);
