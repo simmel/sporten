@@ -63,7 +63,7 @@ jQuery(function ($) {
             console.log("Done adding tracks, we've reached " + tracks_added);
             return false;
           }
-          if (page >= 5) {
+          if (page > 5) {
             console.log("We are on page " + page + ", won't search any further for artist " + artist + ".");
             return false;
           }
