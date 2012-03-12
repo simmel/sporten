@@ -47,12 +47,13 @@ jQuery(function ($) {
     });
   }
 
-  function fetch_tracks(artist, number_of_tracks, when_completed) {
+  function fetch_tracks(artist, number_of_tracks, when_completed, page) {
     console.log("Fetching tracks for " + artist);
+    var page = page || 1;
 
     $.get(
       'http://ws.spotify.com/search/1/track',
-      { q: 'artist:"' + artist + '"' },
+      { q: 'artist:"' + artist + '"', page: page },
       function (xml) {
         var tracks = []
         var user_country = geoip_country_code();
@@ -60,6 +61,10 @@ jQuery(function ($) {
         $('track', xml).each(function() {
           if (tracks_added >= number_of_tracks) {
             return;
+          }
+          if (page >= 5) {
+            console.log("We are on page " + page + ", won't search any further for artist " + artist + ".");
+            return false;
           }
           var track_id = $(this).attr('href')
           track_territory = $(this).find('territories:contains(' + user_country + ')').first();
