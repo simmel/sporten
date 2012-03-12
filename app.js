@@ -63,14 +63,14 @@ jQuery(function ($) {
           }
           var track_id = $(this).attr('href')
           track_territory = $(this).find('territories:contains(' + user_country + ')').first();
+          var track_name = $('> name', this).text();
+          var artist_name = $('artist name', this).map(function(){
+            return $(this).text();
+            }).get().join(', ');
+          var album_name = $('album name', this).text();
+          var track_info = artist_name + "-" + track_name + " (" + album_name + ") " + track_id;
           // Only add track if it's available "worldwide" or in the users country
           if ($(this).find('territories').first().text() == "worldwide" || track_territory.length) {
-            var track_name = $('> name', this).text();
-            var artist_name = $('artist name', this).map(function(){
-              return $(this).text();
-            }).get().join(', ');
-            var album_name = $('album name', this).text();
-            var track_info = artist_name + "-" + track_name + " (" + album_name + ") " + track_id;
             console.log("Adding " + track_info);
             tracks.push(track_id);
             tracks_added++;
