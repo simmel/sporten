@@ -47,9 +47,10 @@ jQuery(function ($) {
     });
   }
 
-  function fetch_tracks(artist, number_of_tracks, when_completed, page) {
+  function fetch_tracks(artist, number_of_tracks, when_completed, page, tracks_added) {
     console.log("Fetching tracks for " + artist);
     var page = page || 1;
+    var tracks_added = tracks_added || 0;
 
     $.get(
       'http://ws.spotify.com/search/1/track',
@@ -57,7 +58,6 @@ jQuery(function ($) {
       function (xml) {
         var tracks = []
         var user_country = geoip_country_code();
-        var tracks_added = 0;
         $('track', xml).each(function(i) {
           if (tracks_added >= number_of_tracks) {
             console.log("Done adding tracks, we've reached " + tracks_added);
@@ -90,7 +90,7 @@ jQuery(function ($) {
             console.log("Didn't find enough tracks (only found " + tracks_added
               + " out of " + number_of_tracks + "), so fetching from page " +
               page + ".");
-            fetch_tracks(artist, number_of_tracks, when_completed, page);
+            fetch_tracks(artist, number_of_tracks, when_completed, page, tracks_added);
             return false;
           }
         });
