@@ -58,12 +58,21 @@ jQuery(function ($) {
         var tracks = []
         var user_country = geoip_country_code();
         var tracks_added = 0;
-        $('track', xml).each(function() {
+        $('track', xml).each(function(i) {
           if (tracks_added >= number_of_tracks) {
-            return;
+            console.log("Done adding tracks, we've reached " + tracks_added);
+            return false;
           }
           if (page >= 5) {
             console.log("We are on page " + page + ", won't search any further for artist " + artist + ".");
+            return false;
+          }
+          if (i == 99 && tracks_added < number_of_tracks) {
+            page = page + 1;
+            console.log("Didn't find enough tracks (only found " + tracks_added
+              + " out of " + number_of_tracks + "), so fetching from page " +
+              page + ".");
+            fetch_tracks(artist, number_of_tracks, when_completed, page);
             return false;
           }
           var track_id = $(this).attr('href')
