@@ -67,14 +67,6 @@ jQuery(function ($) {
             console.log("We are on page " + page + ", won't search any further for artist " + artist + ".");
             return false;
           }
-          if (i == 99 && tracks_added < number_of_tracks) {
-            page = page + 1;
-            console.log("Didn't find enough tracks (only found " + tracks_added
-              + " out of " + number_of_tracks + "), so fetching from page " +
-              page + ".");
-            fetch_tracks(artist, number_of_tracks, when_completed, page);
-            return false;
-          }
           var track_id = $(this).attr('href')
           track_territory = $(this).find('territories:contains(' + user_country + ')').first();
           var track_name = $('> name', this).text();
@@ -91,6 +83,15 @@ jQuery(function ($) {
           }
           else {
             console.log("Not adding " + track_info + " since it's not available in user territory (" + user_country + ").");
+          }
+
+          if (i == 99 && tracks_added < number_of_tracks) {
+            page = page + 1;
+            console.log("Didn't find enough tracks (only found " + tracks_added
+              + " out of " + number_of_tracks + "), so fetching from page " +
+              page + ".");
+            fetch_tracks(artist, number_of_tracks, when_completed, page);
+            return false;
           }
         });
         when_completed(tracks);
