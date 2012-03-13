@@ -70,16 +70,30 @@ jQuery(function ($) {
           var track_id = $(this).attr('href')
           track_territory = $(this).find('territories:contains(' + user_country + ')').first();
           var track_name = $('> name', this).text();
-          var artist_name = $('artist name', this).map(function(){
+          var artist_names = $('artist name', this).map(function(){
             return $(this).text();
-            }).get().join(', ');
+            }).get();
+          var artist_name = artist_names.join(', ');
           var album_name = $('album name', this).text();
           var track_info = artist_name + "-" + track_name + " (" + album_name + ") " + track_id;
+          var dont_add = 0;
+          var regex = new RegExp(artist, "i");
+          $.each(artist_names, function() {
+            if (this.match(regex) && this.replace(regex, "").length > 0) {
+              console.log(this + " matches the search term " + regex +
+                " but it has too many (" + this.replace(regex, "").length +
+                ") irrelevant characters in it to be a correct.");
+              dont_add = 1;
+            }
+          });
+
           // Only add track if it's available "worldwide" or in the users country
           if ($(this).find('territories').first().text() == "worldwide" || track_territory.length) {
-            console.log("Adding " + track_info);
-            tracks.push(track_id);
-            tracks_added++;
+            if (dont_add != 1) {
+              console.log("Adding " + track_info);
+              tracks.push(track_id);
+              tracks_added++;
+            }
           }
           else {
             console.log("Not adding " + track_info + " since it's not available in user territory (" + user_country + ").");
