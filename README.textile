@@ -7,3 +7,4 @@ h1. TODO
 * Add auto width on <input> and <textarea> to support mobile (either in a mobile css or the default)
 * Enter with one empty input shouldn't search
 * Artist top tracks
+* Switch to using .on() so we are jQuery +1.7 compatible, see "this page":http://www.elijahmanor.com/2012/02/differences-between-jquery-bind-vs-live.html
