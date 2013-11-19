@@ -68,7 +68,7 @@ jQuery(function ($) {
             return false;
           }
           var track_id = $(this).attr('href')
-          track_territory = $(this).find('territories:contains(' + user_country + ')').first();
+          var track_territory = $(this).find('territories:contains(' + user_country + ')').first();
           var track_name = $('> name', this).text();
           var artist_names = $('artist name', this).map(function(){
             return $(this).text();
