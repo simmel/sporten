@@ -75,6 +75,7 @@ jQuery(function ($) {
             }).get();
           var artist_name = artist_names.join(', ');
           var album_name = $('album name', this).text();
+          var track_length = Number($('> length', this).text());
           var track_info = artist_name + "-" + track_name + " (" + album_name + ") " + track_id;
           var dont_add = 0;
           var regex = new RegExp(artist, "i");
@@ -86,6 +87,17 @@ jQuery(function ($) {
               dont_add = 1;
             }
           });
+
+          // Don't add tracks that are over 50 minutes long or has "continuous"
+          // in the title. There are a few false positives but this should work
+          // for the most part.
+          regex = new RegExp("continuous", "i");
+          if (track_name.match(regex) && (!isNaN(track_length) && track_length >= 3000)) {
+            console.log(track_info + " is named continuous and is longer " +
+              "than 50 minutes so it's probably a continuous mix of a whole " +
+              "album, not adding.");
+            dont_add = 1;
+          }
 
           // Only add track if it's available "worldwide" or in the users country
           if ($(this).find('territories').first().text() == "worldwide" || track_territory.length) {
