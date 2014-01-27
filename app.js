@@ -16,7 +16,7 @@ jQuery(function ($) {
     console.log("Auto-completing: " + request.term );
 
     $.get(
-      'http://ws.spotify.com/search/1/artist',
+      'https://ws.spotify.com/search/1/artist',
       { q: request.term + '*' },
       function (xml) {
         var data = [];
@@ -53,7 +53,7 @@ jQuery(function ($) {
     var tracks_added = tracks_added || 0;
 
     $.get(
-      'http://ws.spotify.com/search/1/track',
+      'https://ws.spotify.com/search/1/track',
       { q: 'artist:"' + artist + '"', page: page },
       function (xml) {
         var tracks = []
