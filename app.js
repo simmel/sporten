@@ -8,6 +8,12 @@ if (!("console" in window)) {
 
 jQuery(function ($) {
 
+  // TODO Add a spinner and retry if it fails.
+  var country_code = null;
+  $.getJSON("https://freegeoip.net/json/", function(data) {
+    country_code = data.country_code;
+  });
+
   function fetch(/* object */ request, /* function */ respond) {
     if ($('input[name=search_type]:checked').attr("id") != "artist") {
       return;
@@ -57,7 +63,6 @@ jQuery(function ($) {
       { q: 'artist:"' + artist + '"', page: page },
       function (xml) {
         var tracks = []
-        var user_country = geoip_country_code();
         $('track', xml).each(function(i) {
           if (tracks_added >= number_of_tracks) {
             console.log("Done adding tracks, we've reached " + tracks_added);
@@ -68,7 +73,7 @@ jQuery(function ($) {
             return false;
           }
           var track_id = $(this).attr('href')
-          var track_territory = $(this).find('territories:contains(' + user_country + ')').first();
+          var track_territory = $(this).find('territories:contains(' + country_code + ')').first();
           var track_name = $('> name', this).text();
           var artist_names = $('artist name', this).map(function(){
             return $(this).text();
@@ -108,7 +113,7 @@ jQuery(function ($) {
             }
           }
           else {
-            console.log("Not adding " + track_info + " since it's not available in user territory (" + user_country + ").");
+            console.log("Not adding " + track_info + " since it's not available in user territory (" + country_code + ").");
           }
 
           if (i == 99 && tracks_added < number_of_tracks) {
